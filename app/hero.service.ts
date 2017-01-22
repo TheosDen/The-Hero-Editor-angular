@@ -6,6 +6,11 @@ import {Hero} from './hero';
 @Injectable()
 export class HeroService {
     getHeroes(): Promise<Hero[]> {
-        return Promise.resolve(HEROES);
+        return Promise.resolve(HEROES.slice(0, 4));
+    }
+
+    getHero(id: number): Promise<Hero> {
+        return this.getHeroes()
+            .then(heroes => heroes.find(hero => hero.id === id));
     }
 }
